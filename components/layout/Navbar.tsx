@@ -25,9 +25,11 @@ export default function Navbar() {
           </Link>
         </nav>
 
-        <Button>
-          Mulai
-        </Button>
+<Link href="/quiz">
+  <Button size="lg">
+    Mulai Quiz
+  </Button>
+</Link>
 
       </div>
     </header>
