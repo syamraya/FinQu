@@ -8,6 +8,9 @@ export default function QuizHeader() {
       <p className="text-muted-foreground">
         Jawab semua soal dengan benar.
       </p>
+      <p className="text-muted-foreground text-xs">
+        10% rate memicu easter egg
+      </p>
     </div>
   );
 }

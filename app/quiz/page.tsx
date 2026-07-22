@@ -86,7 +86,7 @@ export default function QuizPage() {
     setAnswers(copy);
 
     if (index !== question.answer) {
-      const isLucky = Math.random() < 0.05;
+      const isLucky = Math.random() < 0.10;
       
       if (isLucky) {
         setShowRickroll(true);
