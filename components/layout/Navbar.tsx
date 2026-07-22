@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import ThemeToggle from "@/components/theme-toggle";
 
 export default function Navbar() {
   return (
@@ -23,6 +24,9 @@ export default function Navbar() {
           <Link href="/quiz">
             Quiz
           </Link>
+            <div className="flex items-center gap-3">
+    <ThemeToggle />
+  </div>
         </nav>
 
 <Link href="/quiz">

@@ -34,6 +34,7 @@ const FINAL_TRICK_TEXT = "Eitss! 😝";
 export default function QuizPage() {
   const router = useRouter();
   const buttonRef = useRef<HTMLButtonElement>(null);
+  
 
   const [questions, setQuestions] = useState<Question[]>([]);
   const [answers, setAnswers] = useState<(number | null)[]>([]);
@@ -67,6 +68,16 @@ export default function QuizPage() {
   const progress = questions.length > 0 ? ((currentQuestion + 1) / questions.length) * 100 : 0;
   const allAnswered = answers.length > 0 && answers.every((a) => a !== null);
   const isFleeing = allAnswered && dodgeCount < MAX_DODGES;
+  const [flagged, setFlagged] = useState<boolean[]>(
+  Array(questions.length).fill(false)
+  );
+  function toggleFlag(index: number) {
+  const copy = [...flagged];
+
+  copy[index] = !copy[index];
+
+  setFlagged(copy);
+}
 
   function handleSelect(index: number) {
     if (!question) return;
@@ -75,7 +86,7 @@ export default function QuizPage() {
     setAnswers(copy);
 
     if (index !== question.answer) {
-      const isLucky = Math.random() < 0.5;
+      const isLucky = Math.random() < 0.05;
       
       if (isLucky) {
         setShowRickroll(true);
@@ -271,11 +282,13 @@ export default function QuizPage() {
           </div>
         </div>
 
-        <QuestionSidebar
-          answers={answers}
-          current={currentQuestion}
-          onSelect={setCurrentQuestion}
-        />
+<QuestionSidebar
+  answers={answers}
+  flagged={flagged}
+  current={currentQuestion}
+  onSelect={setCurrentQuestion}
+  onToggleFlag={toggleFlag}
+/>
       </div>
 
       {showRickroll && (
