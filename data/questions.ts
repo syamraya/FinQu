@@ -493,3 +493,56 @@ export function getRandomQuestionsBalanced(count: number = 5): Question[] {
 
   return result;
 }
+
+// ============================================================
+// KATEGORI (untuk halaman kategori & quiz per-kategori)
+// ============================================================
+export type CategorySlug =
+  | "dasar-perbankan"
+  | "produk-bank"
+  | "ojk-bi"
+  | "kredit"
+  | "kyc-aml"
+  | "ekonomi";
+
+export const categoryList: { slug: CategorySlug; label: string; count: number }[] = [
+  { slug: "dasar-perbankan", label: "Dasar Perbankan", count: bab1.length },
+  { slug: "produk-bank", label: "Produk Bank", count: bab2.length },
+  { slug: "ojk-bi", label: "OJK & BI", count: bab3.length },
+  { slug: "kredit", label: "Kredit", count: bab4.length },
+  { slug: "kyc-aml", label: "KYC / AML", count: bab5.length },
+  { slug: "ekonomi", label: "Ekonomi", count: bab6.length },
+];
+
+export function getCategoryLabel(slug: string | null | undefined): string {
+  const found = categoryList.find((c) => c.slug === slug);
+  return found ? found.label : "Semua Kategori";
+}
+
+const categoryMap: Record<CategorySlug, Question[]> = {
+  "dasar-perbankan": bab1,
+  "produk-bank": bab2,
+  "ojk-bi": bab3,
+  "kredit": bab4,
+  "kyc-aml": bab5,
+  "ekonomi": bab6,
+};
+
+/**
+ * Mengambil `count` soal acak dari satu kategori/bab tertentu.
+ * Jika slug tidak dikenali, fallback ke seluruh bank soal (mixed).
+ */
+export function getRandomQuestionsByCategory(
+  slug: string | null | undefined,
+  count: number = 20
+): Question[] {
+  const source = slug && slug in categoryMap ? categoryMap[slug as CategorySlug] : questionBank;
+
+  const pool = [...source];
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+
+  return pool.slice(0, Math.min(count, pool.length));
+}

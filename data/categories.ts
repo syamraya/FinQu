@@ -1,6 +1,7 @@
 export const categories = [
   {
     id: 1,
+    slug: "dasar-perbankan",
     title: "Dasar Perbankan",
     description: "Konsep dasar bank dan fungsi perbankan.",
     icon: "🏦",
@@ -9,6 +10,7 @@ export const categories = [
   },
   {
     id: 2,
+    slug: "produk-bank",
     title: "Produk Bank",
     description: "Tabungan, deposito, giro, kredit.",
     icon: "💳",
@@ -17,6 +19,7 @@ export const categories = [
   },
   {
     id: 3,
+    slug: "ojk-bi",
     title: "OJK & BI",
     description: "Regulasi Bank Indonesia dan OJK.",
     icon: "🏛️",
@@ -25,6 +28,7 @@ export const categories = [
   },
   {
     id: 4,
+    slug: "kyc-aml",
     title: "KYC / AML",
     description: "Know Your Customer & Anti Money Laundering.",
     icon: "🛡️",
@@ -33,6 +37,7 @@ export const categories = [
   },
   {
     id: 5,
+    slug: "kredit",
     title: "Kredit",
     description: "Analisis kredit dan manajemen risiko.",
     icon: "💰",
@@ -41,6 +46,7 @@ export const categories = [
   },
   {
     id: 6,
+    slug: "ekonomi",
     title: "Ekonomi",
     description: "Inflasi, suku bunga, kebijakan moneter.",
     icon: "📈",
